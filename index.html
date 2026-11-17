@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniPass — One card for 81 provinces</title>
+<meta name="description" content="OmniPass is a concept for one national transit card, one balance and one shared network across all 81 provinces of Türkiye.">
+<meta name="theme-color" content="#0F2A3D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500&family=Rubik:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Soft 3D icon sprite (inline SVG, no emoji) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gO" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFC09A"/><stop offset="1" stop-color="#E5612F"/></linearGradient>
+    <linearGradient id="gT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9BE0EC"/><stop offset="1" stop-color="#2A869F"/></linearGradient>
+    <linearGradient id="gN" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C7FA3"/><stop offset="1" stop-color="#12334A"/></linearGradient>
+    <linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E6DECF"/></linearGradient>
+  </defs>
+  <symbol id="ic-clock" viewBox="0 0 64 64"><ellipse cx="32" cy="58" rx="18" ry="4" fill="#000" opacity=".18"/><circle cx="32" cy="30" r="25" fill="url(#gO)"/><circle cx="32" cy="30" r="18" fill="url(#gC)"/><path d="M32 19v12l8 5" fill="none" stroke="#0F2A3D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="22" cy="14" rx="9" ry="4" fill="#fff" opacity=".4" transform="rotate(-35 22 14)"/></symbol>
+  <symbol id="ic-coin" viewBox="0 0 64 64"><ellipse cx="32" cy="58" rx="18" ry="4" fill="#000" opacity=".18"/><circle cx="32" cy="30" r="25" fill="url(#gO)"/><circle cx="32" cy="30" r="19" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.5"/><text x="32" y="39" text-anchor="middle" font-family="Rubik,sans-serif" font-weight="800" font-size="26" fill="#fff">₺</text><ellipse cx="22" cy="14" rx="9" ry="4" fill="#fff" opacity=".4" transform="rotate(-35 22 14)"/></symbol>
+  <symbol id="ic-tangle" viewBox="0 0 64 64"><ellipse cx="32" cy="58" rx="18" ry="4" fill="#000" opacity=".18"/><circle cx="32" cy="30" r="25" fill="url(#gT)"/><text x="32" y="41" text-anchor="middle" font-family="Rubik,sans-serif" font-weight="800" font-size="32" fill="#fff">?</text><ellipse cx="22" cy="14" rx="9" ry="4" fill="#fff" opacity=".4" transform="rotate(-35 22 14)"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="15" ry="3.5" fill="#000" opacity=".18"/><rect x="16" y="3" width="32" height="55" rx="8" fill="url(#gN)"/><rect x="20" y="9" width="24" height="42" rx="4" fill="url(#gC)"/><path d="M27 26q4 6 0 12M33 22q7 10 0 20" fill="none" stroke="#E5612F" stroke-width="3.2" stroke-linecap="round"/><rect x="26" y="5.5" width="12" height="2" rx="1" fill="#fff" opacity=".35"/></symbol>
+  <symbol id="ic-cap" viewBox="0 0 64 64"><ellipse cx="32" cy="58" rx="22" ry="4" fill="#000" opacity=".18"/><path d="M32 8L60 22 32 36 4 22z" fill="url(#gN)"/><path d="M16 31v11c0 5 7 9 16 9s16-4 16-9V31L32 40z" fill="url(#gT)"/><path d="M56 25v17" stroke="#E5612F" stroke-width="3" stroke-linecap="round"/><circle cx="56" cy="45" r="3.5" fill="url(#gO)"/><path d="M14 20L32 11" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="ic-globe" viewBox="0 0 64 64"><ellipse cx="32" cy="58" rx="18" ry="4" fill="#000" opacity=".18"/><circle cx="32" cy="30" r="25" fill="url(#gT)"/><g fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2.4"><ellipse cx="32" cy="30" rx="10" ry="25"/><path d="M8 22h48M8 38h48"/></g><ellipse cx="22" cy="14" rx="9" ry="4" fill="#fff" opacity=".35" transform="rotate(-35 22 14)"/></symbol>
+  <symbol id="ic-lock" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="18" ry="4" fill="#000" opacity=".18"/><path d="M20 28v-7a12 12 0 0124 0v7" fill="none" stroke="url(#gN)" stroke-width="7" stroke-linecap="round"/><rect x="11" y="27" width="42" height="30" rx="9" fill="url(#gO)"/><circle cx="32" cy="40" r="4.5" fill="#fff"/><path d="M32 42v7" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><rect x="16" y="30" width="16" height="4" rx="2" fill="#fff" opacity=".35"/></symbol>
+  <symbol id="ic-users" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="22" ry="4" fill="#000" opacity=".18"/><circle cx="42" cy="22" r="9" fill="url(#gT)"/><path d="M26 52c0-10 7-16 16-16s16 6 16 16z" fill="url(#gT)"/><circle cx="23" cy="20" r="11" fill="url(#gO)"/><path d="M4 55c0-12 8-19 19-19s19 7 19 19z" fill="url(#gO)"/><ellipse cx="19" cy="14" rx="5" ry="2.6" fill="#fff" opacity=".4" transform="rotate(-35 19 14)"/></symbol>
+  <symbol id="ic-city" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="24" ry="4" fill="#000" opacity=".18"/><rect x="6" y="26" width="22" height="31" rx="3" fill="url(#gN)"/><rect x="24" y="8" width="26" height="49" rx="3" fill="url(#gO)"/><g fill="#fff" fill-opacity=".75"><rect x="30" y="15" width="5" height="5" rx="1"/><rect x="40" y="15" width="5" height="5" rx="1"/><rect x="30" y="27" width="5" height="5" rx="1"/><rect x="40" y="27" width="5" height="5" rx="1"/><rect x="30" y="39" width="5" height="5" rx="1"/><rect x="40" y="39" width="5" height="5" rx="1"/><rect x="11" y="33" width="4" height="4" rx="1"/><rect x="19" y="33" width="4" height="4" rx="1"/><rect x="11" y="43" width="4" height="4" rx="1"/><rect x="19" y="43" width="4" height="4" rx="1"/></g></symbol>
+  <symbol id="ic-star" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="18" ry="4" fill="#000" opacity=".18"/><path d="M32 3l8.6 17.4 19.2 2.8-13.9 13.5 3.3 19.1L32 46.8l-17.2 9 3.3-19.1L4.2 23.2l19.2-2.8z" fill="url(#gO)" stroke="url(#gO)" stroke-width="5" stroke-linejoin="round"/><path d="M20 22l9-9" stroke="#fff" stroke-opacity=".5" stroke-width="3.5" stroke-linecap="round"/></symbol>
+  <symbol id="ic-tap" viewBox="0 0 64 64"><path d="M18 20q8 12 0 24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M30 12q14 20 0 40" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M42 4q20 28 0 56" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Announcement strip (scrolltide) -->
+<div class="announce" role="note">
+  <span class="dot"></span>
+  <span>Concept project · B2 English speaking presentation · Çankaya University — not an official transport product</span>
+  <a href="#play">Play Tap&nbsp;&amp;&nbsp;Go&nbsp;→</a>
+</div>
+
+<!-- Glass navbar (navbar.gallery) -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="OmniPass home">
+    <span class="brand-mark"><svg width="16" height="16"><use href="#ic-tap"/></svg></span>
+    <span>OmniPass</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="#problem">Problem</a>
+    <a href="#idea">Idea</a>
+    <a href="#journey">Journey</a>
+    <a href="#how">How it works</a>
+    <a href="#roadmap">Roadmap</a>
+  </nav>
+  <a class="btn btn-sm" href="#play">Play the game</a>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="label">National shared transit card · Concept</p>
+    <h1>One card for <em>every</em> road in Türkiye</h1>
+    <p class="lede">OmniPass is <em>one pass for everywhere</em>. One card, one balance and one shared network on every bus, metro, tram and ferry in all 81 provinces.</p>
+    <div class="cta-row">
+      <a class="btn" href="#play">Play Tap &amp; Go</a>
+      <a class="btn btn-ghost" href="#idea">See the idea</a>
+    </div>
+  </div>
+
+  <div class="card-stage" aria-hidden="true">
+    <div class="ycard" id="ycard">
+      <div class="ycard-top">
+        <span class="ycard-name">OmniPass</span>
+        <svg width="46" height="46"><use href="#ic-tap"/></svg>
+      </div>
+      <div class="ycard-81">81</div>
+      <div class="ycard-bot">
+        <span>81 İL · TEK KART</span>
+        <span>•••• •••• 0081</span>
+      </div>
+    </div>
+    <div class="float-plates">
+      <span class="plate" style="--r:-8deg;--x:2%;--y:6%"><b>TR</b><i>06</i></span>
+      <span class="plate" style="--r:6deg;--x:78%;--y:0%"><b>TR</b><i>34</i></span>
+      <span class="plate" style="--r:-4deg;--x:84%;--y:70%"><b>TR</b><i>35</i></span>
+      <span class="plate" style="--r:9deg;--x:-4%;--y:78%"><b>TR</b><i>07</i></span>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>06 ANKARA</span><span>26 ESKİŞEHİR</span><span>34 İSTANBUL</span><span>35 İZMİR</span><span>07 ANTALYA</span>
+      <span>06 ANKARA</span><span>26 ESKİŞEHİR</span><span>34 İSTANBUL</span><span>35 İZMİR</span><span>07 ANTALYA</span>
+      <span>06 ANKARA</span><span>26 ESKİŞEHİR</span><span>34 İSTANBUL</span><span>35 İZMİR</span><span>07 ANTALYA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="sheet light" id="problem">
+  <div class="wrap">
+    <p class="label dark">The problem</p>
+    <h2>One trip, <em>three</em> cards</h2>
+    <p class="sub">Travel from Ankara to İstanbul to İzmir and you meet three cards, three apps and three balances. None of them talk to each other.</p>
+
+    <div class="three-cards" id="threeCards">
+      <article class="city-card c1">
+        <span class="cc-label">Ankara</span>
+        <strong>AnkaraKart</strong>
+        <span class="cc-bal">₺ 18,50 <small>left</small></span>
+      </article>
+      <span class="arrow" aria-hidden="true">→</span>
+      <article class="city-card c2">
+        <span class="cc-label">İstanbul</span>
+        <strong>İstanbulkart</strong>
+        <span class="cc-bal">₺ 6,25 <small>left</small></span>
+      </article>
+      <span class="arrow" aria-hidden="true">→</span>
+      <article class="city-card c3">
+        <span class="cc-label">İzmir</span>
+        <strong>İzmirim Kart</strong>
+        <span class="cc-bal">₺ 0,00 <small>buy &amp; top up</small></span>
+      </article>
+    </div>
+    <p class="fineprint">Illustrative balances. Money left on one city card cannot be used in the next city.</p>
+
+    <div class="pains">
+      <article>
+        <svg class="ic" viewBox="0 0 64 64"><use href="#ic-clock"/></svg>
+        <h3>Lost time</h3>
+        <p>Find a kiosk, buy a card, add money, learn the system. In every new city.</p>
+      </article>
+      <article>
+        <svg class="ic" viewBox="0 0 64 64"><use href="#ic-coin"/></svg>
+        <h3>Stuck money</h3>
+        <p>The balance on one card usually cannot be used in another city. It just sits there.</p>
+      </article>
+      <article>
+        <svg class="ic" viewBox="0 0 64 64"><use href="#ic-tangle"/></svg>
+        <h3>Confusion</h3>
+        <p>Different apps, different payment rules and different fares for the same traveller.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IDEA ============ -->
+<section class="sheet paper" id="idea">
+  <div class="wrap center">
+    <p class="label dark">The idea</p>
+    <h2>Think of it like a <em>SIM card</em></h2>
+    <p class="sub">Wherever you travel in Türkiye, your SIM keeps working. OmniPass does the same for public transport.</p>
+
+    <div class="trio">
+      <div><b>1</b><span>card</span></div>
+      <div><b>1</b><span>balance</span></div>
+      <div><b>81</b><span>provinces</span></div>
+    </div>
+
+    <blockquote class="slogan">“81 provinces. <em>One pass.</em>”</blockquote>
+    <p class="fineprint">Slogan from the project. OmniPass is a concept design, not an official product.</p>
+  </div>
+</section>
+
+<!-- ============ HOW A TAP WORKS ============ -->
+<section class="sheet dark" id="how">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="label">How a tap works</p>
+    <h2>Four steps. <em>One second</em></h2>
+
+    <div class="how">
+      <ol class="steps" id="steps">
+        <li class="on"><span>01</span><div><h3>Tap</h3><p>The card or NFC phone touches the validator.</p></div></li>
+        <li><span>02</span><div><h3>Verify</h3><p>The reader detects the card and checks it is real.</p></div></li>
+        <li><span>03</span><div><h3>Charge</h3><p>The correct fare for that city and mode is taken.</p></div></li>
+        <li><span>04</span><div><h3>Update</h3><p>The balance updates automatically. Gate opens.</p></div></li>
+      </ol>
+
+      <div class="validator" id="validator" data-offline="false">
+        <div class="v-screen">
+          <span class="v-state" id="vState">Ready</span>
+          <span class="v-line" id="vLine">Hold your card here</span>
+        </div>
+        <div class="v-pad"><svg width="54" height="54"><use href="#ic-tap"/></svg></div>
+        <div class="v-flow" id="vFlow"><i></i><i></i><i></i><i></i></div>
+        <label class="switch">
+          <input type="checkbox" id="offlineToggle">
+          <span class="track"></span>
+          <span>No internet (offline mode)</span>
+        </label>
+        <p class="v-note" id="vNote">Online: the central system is updated instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="sheet light" id="journey">
+  <div class="wrap">
+    <p class="label dark">Across Türkiye</p>
+    <h2>One journey, <em>five</em> cities</h2>
+    <p class="sub">Five very different cities show how one card works in different transport worlds. Tap a city.</p>
+
+    <div class="route" id="route" role="tablist" aria-label="Cities">
+      <button role="tab" class="stop on" data-i="0"><span class="plate big"><b>TR</b><i>06</i></span><h3>Ankara</h3><p>The capital</p></button>
+      <button role="tab" class="stop" data-i="1"><span class="plate big"><b>TR</b><i>26</i></span><h3>Eskişehir</h3><p>Student city</p></button>
+      <button role="tab" class="stop" data-i="2"><span class="plate big"><b>TR</b><i>34</i></span><h3>İstanbul</h3><p>Metropolis</p></button>
+      <button role="tab" class="stop" data-i="3"><span class="plate big"><b>TR</b><i>35</i></span><h3>İzmir</h3><p>Aegean coast</p></button>
+      <button role="tab" class="stop" data-i="4"><span class="plate big"><b>TR</b><i>07</i></span><h3>Antalya</h3><p>Tourism capital</p></button>
+    </div>
+
+    <div class="city-detail" id="cityDetail" aria-live="polite">
+      <div>
+        <p class="label dark" id="cdModes">Metro · Ankaray · Bus</p>
+        <h3 id="cdTitle">Ankara</h3>
+        <p id="cdText"></p>
+      </div>
+      <dl>
+        <div><dt>See</dt><dd id="cdSee"></dd></div>
+        <div><dt>Taste</dt><dd id="cdTaste"></dd></div>
+        <div><dt>Balance</dt><dd id="cdBal">₺ 200,00 · same card</dd></div>
+      </dl>
+    </div>
+    <p class="closing-line">Same card, same balance, from the first stop to the last.</p>
+  </div>
+</section>
+
+<!-- ============ LAYER ============ -->
+<section class="sheet paper" id="layer">
+  <div class="wrap">
+    <p class="label dark">The integration layer</p>
+    <h2>One layer <em>above</em> every city</h2>
+    <p class="sub">OmniPass does not replace local systems. Each city keeps its own validators, fares and ferries. OmniPass sits on top and records every journey.</p>
+
+    <div class="layer">
+      <div class="layer-top">
+        <strong>OmniPass layer</strong>
+        <span>One balance</span><span>One fare engine</span><span>Automatic payment split</span>
+      </div>
+      <div class="layer-links" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="layer-cities">
+        <div><span class="plate"><b>TR</b><i>06</i></span><h3>Ankara</h3><p>Metro · Ankaray · Bus</p></div>
+        <div><span class="plate"><b>TR</b><i>26</i></span><h3>Eskişehir</h3><p>Tram network</p></div>
+        <div><span class="plate"><b>TR</b><i>34</i></span><h3>İstanbul</h3><p>Ferry system</p></div>
+        <div><span class="plate"><b>TR</b><i>35</i></span><h3>İzmir</h3><p>Metro · Ferry</p></div>
+        <div><span class="plate"><b>TR</b><i>07</i></span><h3>Antalya</h3><p>Tram · Bus</p></div>
+      </div>
+    </div>
+    <p class="closing-line">Passengers use one card. Cities keep running their own services. Operators are paid automatically.</p>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="sheet light" id="features">
+  <div class="wrap">
+    <p class="label dark">Making it real</p>
+    <h2>What makes OmniPass <em>smarter</em></h2>
+    <div class="feat">
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-phone"/></svg><h3>Phone as a card</h3><p>NFC phones and smartwatches work like the physical card.</p></article>
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-cap"/></svg><h3>Discounts travel too</h3><p>Student, teacher and senior fares work in every city. A student from Ankara pays the student fare in İzmir.</p></article>
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-globe"/></svg><h3>Visitor pass</h3><p>A tourist card for foreign visitors, sold at airports and hotels.</p></article>
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-lock"/></svg><h3>Safe balance</h3><p>The balance is tied to your account. Lose the card, keep the money.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GAME ============ -->
+<section class="sheet dark play" id="play">
+  <div class="aurora small" aria-hidden="true"><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap center">
+    <p class="label">Mini game</p>
+    <h2>Tap &amp; <em>Go</em></h2>
+    <p class="sub">Cross five cities with one card. Tap each validator when the needle is inside the orange zone. Miss and the reader asks you to try again, and every second costs you.</p>
+
+    <div class="game" id="game">
+      <div class="g-hud">
+        <div class="g-route" id="gRoute" aria-label="Route progress"></div>
+        <div class="g-stats">
+          <span>Balance <b id="gBal">₺ 200</b></span>
+          <span>Time <b id="gTime">0.0s</b></span>
+          <span>Combo <b id="gCombo">x1</b></span>
+        </div>
+      </div>
+
+      <!-- intro -->
+      <div class="g-screen on" id="gIntro">
+        <h3>Ankara → Antalya in 10 taps</h3>
+        <ul class="g-rules">
+          <li><b>Tap</b> with the button, the <kbd>Space</kbd> key or by clicking the reader.</li>
+          <li><b>Perfect taps</b> in the middle of the zone build your combo.</li>
+          <li><b>Offline</b> stops (tunnels, ferries) hide part of the zone. Trust your timing.</li>
+        </ul>
+        <button class="btn" id="gStart">Start journey</button>
+        <p class="fineprint light">Best: <span id="gBest">none yet</span></p>
+      </div>
+
+      <!-- play -->
+      <div class="g-screen" id="gPlay">
+        <div class="g-leg">
+          <span class="plate" id="gPlate"><b>TR</b><i>06</i></span>
+          <div><strong id="gCity">Ankara</strong><span id="gMode">Metro</span></div>
+          <span class="badge" id="gOffline" hidden>Offline · stored on device</span>
+        </div>
+        <div class="reader" id="gReader" tabindex="-1">
+          <div class="track" id="gTrack">
+            <div class="zone" id="gZone"></div>
+            <div class="needle" id="gNeedle"></div>
+          </div>
+          <div class="g-msg" id="gMsg">Get ready…</div>
+        </div>
+        <button class="btn btn-tap" id="gTap"><svg width="22" height="22"><use href="#ic-tap"/></svg>TAP</button>
+      </div>
+
+      <!-- end -->
+      <div class="g-screen" id="gEnd">
+        <p class="label">Journey complete</p>
+        <h3 id="gRank">OmniPass</h3>
+        <div class="g-score"><b id="gScore">0</b><span>points</span></div>
+        <div class="g-end-stats">
+          <div><b id="gEndTime">0s</b><span>total time</span></div>
+          <div><b id="gEndMiss">0</b><span>missed taps</span></div>
+          <div><b id="gEndBal">₺0</b><span>balance, still yours</span></div>
+        </div>
+        <div class="compare">
+          <div class="old"><h4>The old way</h4><p>5 cards · 5 kiosk queues<br>about 20 minutes lost<br>unused balance left behind</p></div>
+          <div class="new"><h4>With OmniPass</h4><p>1 card · 0 kiosks<br>0 minutes lost<br>balance goes everywhere</p></div>
+        </div>
+        <p class="fineprint light">Fares and times are illustrative.</p>
+        <button class="btn" id="gAgain">Play again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODEL + CHALLENGES ============ -->
+<section class="sheet paper" id="model">
+  <div class="wrap">
+    <p class="label dark">Making it real</p>
+    <h2>Who pays for it, and what could <em>go wrong</em></h2>
+
+    <div class="pay">
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-users"/></svg><h3>Passengers</h3><p>A one-time card fee. No extra cost per trip.</p></article>
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-city"/></svg><h3>Cities</h3><p>A small fee on each trip OmniPass processes. Cities also save: no local cards to print, no separate apps to build.</p></article>
+      <article><svg class="ic" viewBox="0 0 64 64"><use href="#ic-star"/></svg><h3>Partners</h3><p>Banks, airports and tourism firms sponsor the visitor pass.</p></article>
+    </div>
+    <p class="fineprint">Exact fee levels would be set together with the pilot cities.</p>
+
+    <div class="chal" id="chal">
+      <details open><summary><span>Cooperation</span><em>81 municipalities must agree</em></summary><p>Start with willing pilot cities and one national standard.</p></details>
+      <details><summary><span>Old systems</span><em>Every city is different</em></summary><p>OmniPass sits on top. Cities keep their validators and fares.</p></details>
+      <details><summary><span>Cost</span><em>New software and validators</em></summary><p>Upgrade step by step and share costs with partners.</p></details>
+      <details><summary><span>Security</span><em>Data and offline payments</em></summary><p>Encrypted cards, secure offline storage and regular checks.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="sheet light" id="roadmap">
+  <div class="wrap">
+    <p class="label dark">Roadmap</p>
+    <h2>Step by step to <em>81</em> provinces</h2>
+
+    <div class="phases" id="phases" role="tablist" aria-label="Roadmap phases">
+      <button role="tab" class="on" data-p="1"><small>Phase 1 · Pilot</small><strong>Ankara + Eskişehir</strong><span>Close cities, a fast train link and many students.</span></button>
+      <button role="tab" data-p="2"><small>Phase 2 · Big five</small><strong>+ İstanbul, İzmir, Antalya</strong><span>The largest and most visited cities join.</span></button>
+      <button role="tab" data-p="3"><small>Phase 3 · Nationwide</small><strong>All 81 provinces</strong><span>Every city connects to one network.</span></button>
+    </div>
+
+    <div class="grid81-wrap">
+      <div class="grid81" id="grid81" aria-hidden="true"></div>
+      <p class="grid-count"><b id="gridCount">2</b> / 81 provinces connected</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="sheet dark close">
+  <div class="aurora small" aria-hidden="true"><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap center">
+    <h2>81 provinces. <em>One pass</em></h2>
+    <p class="sub">Thank you for listening. Do you have any questions?</p>
+    <div class="cta-row">
+      <a class="btn" href="#play">Play Tap &amp; Go again</a>
+      <a class="btn btn-ghost" href="#top">Back to top</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer with giant clipped wordmark (footer.design) -->
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div><strong>OmniPass</strong><p>National shared transit card concept.<br>Made for the B2 English speaking project, Çankaya University prep class.</p></div>
+    <nav aria-label="Footer"><a href="#problem">Problem</a><a href="#idea">Idea</a><a href="#journey">Journey</a><a href="#roadmap">Roadmap</a><a href="#play">Game</a></nav>
+    <p class="legal">A concept design, not an official transport product.</p>
+  </div>
+  <div class="wordmark" aria-hidden="true">OmniPass</div>
+</footer>
+
+<script src="script.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
